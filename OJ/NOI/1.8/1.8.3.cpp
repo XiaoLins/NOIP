@@ -17,13 +17,12 @@ int main(){
             cin>>m[i][j];
         }
     }
-    for (int i = 0; i < c; i++){
-        sum += m[0][i];
-        sum += m[r-1][i];
-    }
-    for (int i = 1; i < r-1; i++){
-        sum += m[i][0];
-        sum += m[i][c-1];
+    for (int i = 0; i < r; i++){
+        for (int j = 0; j < c; j++){
+            if (i == 0 || j == 0 || i == r - 1 || j == c - 1){
+                sum += m[i][j];
+            }
+        }
     }
     cout<<sum;
     return 0;
