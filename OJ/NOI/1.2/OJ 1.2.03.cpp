@@ -1,0 +1,14 @@
+﻿//OJ 1.2.03 ????????????????��????�� 
+
+#include <cstdio>
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main(){
+	bool a;
+	char b;
+	cout<<sizeof(a)<<" "<<sizeof(b);
+	return 0;
+} 

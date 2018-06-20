@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "cstdio": "cpp",
+        "cstring": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp",
+        "ratio": "cpp",
+        "algorithm": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "iosfwd": "cpp",
+        "__locale": "cpp",
+        "locale": "cpp",
+        "__bit_reference": "cpp",
+        "bitset": "cpp"
+    }
+}
