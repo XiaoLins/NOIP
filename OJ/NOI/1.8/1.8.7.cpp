@@ -1,4 +1,5 @@
 //OJ 1.8.7 矩阵归零消减序列和
+//暂未完成
 
 #include <cstdio>
 #include <iostream>
@@ -20,7 +21,7 @@ int main(){
             minR[j] = m[j][0];
             minC[j] = m[0][j];
         }
-        
+
     }
     return 0;
 } 
