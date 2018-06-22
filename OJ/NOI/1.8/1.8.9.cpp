@@ -1,4 +1,4 @@
-//OJ 1.8.8 矩阵乘法
+//OJ 1.8.9 矩阵乘法
 
 #include <cstdio>
 #include <iostream>
