@@ -47,7 +47,9 @@ int main() {
 		*/
 		unsigned long long big = -1; 
 		cout<<big<<endl;
-		cout<<_UI64_MAX<<endl;
+		//cout<<_UI64_MAX<<endl;
+		//_UIU4_MAX = 18446744073709551615
+		
 		/*有时候20位数是不够用的，所以我们需要引入其他方法来处理更大整数的计算。
 		C++标准模板库STL里面的所有函数和类我们在信息学竞赛中都可以使用，但里面却 
 		没有专门处理高精度计算的功能，微软公司开发的.NET Framework里面有处理
@@ -264,8 +266,12 @@ int main() {
 			result[0]--; //使result[0]显示确切的位数 
 		for (i=result[0]; i>=1; i--) 
 				cout<<result[i];
+		cout<<endl;
 				
-		//输出余数 
+		//输出余数
+		for (i=temp[0]; i>=1; i--) 
+			cout<<temp[i];
+		cout<<endl;
 	printf("\n");
 	
 	return 0;
@@ -313,9 +319,7 @@ void newTemp(int i)
 
 如何储存呢？ 
 只需把前一步得到的余数temp[1]至temp[len1-i]挪到temp[2]至temp[len1+1-i]，并将
-temp[1]赋值为num1[i]即可。
-
-函数参数：int *temp用数组指针可以改变原数组的值，用int i不会改变原i的值。 */
+temp[1]赋值为num1[i]即可。 */
 	for (int j=len_num1-i; j>=1; j--)
 		temp[j+1] = temp[j];
 	temp[1] = num1[i];	
@@ -356,3 +360,9 @@ void bigMinus()
 	}
 	while (temp[0]>1 && temp[temp[0]]==0) temp[0]--; //记录temp位数可能发生的变化 
 }
+
+/*	作业：
+		1.6编程基础之一维数组 http://noi.openjudge.cn/ch0106/
+		1.13编程基础之综合应用 http://noi.openjudge.cn/ch0113/
+		其中涉及大整数计算（例如多达100位的整数，2的100次幂等等）的题目 
+*/
