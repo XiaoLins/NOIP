@@ -2,36 +2,41 @@
 #include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <utility>
+#include <stack>
 
 using namespace std;
 
-long long cal(long long n1, long long k){
-    long long alice = 0, bob = 0;
-    long long n = n1;
-    while (n > 0){
-        if (k >= n){
-            alice += n;
-            n = 0;
-            break;
-        } else {
+long long int n,now,low = 1,high,mid,alice;
+
+bool check(long long int k){
+    now = n;
+    alice = 0;
+    while(now){
+        if (now >= k){
+            now -= k;
             alice += k;
-            n = n - k;
+        } else{
+            alice += now;
+            break;
         }
-        if (n > 10){
-            bob += (long long)(n * 0.1) - ((long long)(n * 0.1) % 1 );
-            n -= (long long)(0.1 * n) - ((long long)(n * 0.1) % 1 );
-        } 
+        long long int temp = now / 10;
+        now -= temp;
     }
-    if (alice > bob){
-        return k;
-    } else{
-        return cal(n1, k+1);
-    }
+    return alice >= (n - alice);
 }
 
 int main(){
-    int n,k,now;
-    cin>>n;
-    k = cal(n, 1);
-    cout<<k;
+    scanf("%lld",&n);
+    high = n;
+    while (low < high){
+        mid = (low + high)>>1;
+        if (check(mid)){
+            high=mid;
+        } else{
+            low=mid+1;
+        }
+    }
+    printf("%lld",high);
+    return 0;
 }
