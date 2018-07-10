@@ -24,8 +24,8 @@ int main(){
 | --------------------- | ------------------------------------------------------------ |
 | Algorithms            | 一些算法源文件                                               |
 | Turing                | 在图灵编程学习时的源文件及笔记(Markdown格式)                 |
-| cn.openjudge          | 在[OpenJudge](http://www.openjudge.cn) 做题的源文件及调试程序 |
-| org.luogu             | 在[洛谷](http://luogu.org) 做题的源文件及调试程序            |
+| cn.openjudge          | 在[OpenJudge](http://openjudge.cn/user/836944/) 做题的源文件及调试程序 |
+| org.luogu             | 在[洛谷](https://www.luogu.org/space/show?uid=109819) 做题的源文件及调试程序 |
 | com.github.Duboshi.OI | 杜博识老师的[OI讲义](https://github.com/Duboshi/OI)          |
 | aoapc-bac2nd          | [《算法竞赛入门经典》第二版源代码](https://github.com/aoapc-book/aoapc-bac2nd) |
 
@@ -38,6 +38,8 @@ QQ: 279125717
 Email: root@earthsky.cn or leon_she@outlook.com
 
 Website: [SkyPixel - 地球天空](http://www.earthsky.cn) 
+
+OpenJudges: 点击“文件结构”中的OJ名称即可访问我对应OJ的主页
 
 
 
