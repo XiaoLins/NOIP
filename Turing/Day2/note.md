@@ -7,7 +7,6 @@
 ## 并查集
 
 ```cpp
-
 find(u){
     if(u == fu){
         return u;
@@ -22,11 +21,11 @@ find(u){
 ## 树状数组
 
 ```cpp
-
 //树状数组查前缀和
 
 for (x; x>=1; x-=(x&&-x))
     ret+= C[x];
+
 ```
 
 ## ST表
