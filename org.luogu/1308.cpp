@@ -6,32 +6,33 @@
 
 using namespace std;
 
-void ToLowerString(string &str)
-{
-    transform(str.begin(), str.end(), str.begin(), (int (*)(int))tolower);
-}
-
 int main() {
-    string a,s[1000001] = {},first;
+    string a,b,first;
     int cnt = 0, v = 0;
-    bool appear = false;
-    cin>>a;
-    ToLowerString(a);
-    while (cin>>s[cnt]){
-        cnt++;
+    getline(cin,a);
+    getline(cin,b);
+    for (int i=0;i<a.length();++i){
+        a[i]=tolower(a[i]);
     }
-    // for (int i = 0; i < cnt; i++){
-    //     ToLowerString(s[i]);
-    //     if(a == s[i]){
-    //         if (!appear){
-    //         first = i;
-    //         for (int j = i; j >= 0; j--){
-    //             first += s[j].length();
-    //         }
-    //         }
-    //         v++;
-    //     }
-    // }
-    // cout<<v<<" "<<first;
+    for (int i=0;i<b.length();++i){
+        b[i]=tolower(b[i]);
+    }
+    a = " " + a + " ";
+    b = " " + b + " ";
+    if (b.find(a) == string::npos){
+        cout<<-1;
+        return 0;
+    } else{
+        int alpha = b.find(a);
+        int beta = b.find(a);
+        int cnt = 0;
+        while (beta != string::npos){
+            cnt++;
+            beta = b.find(a,beta+1);
+        }
+        cout<<cnt<<" "<<alpha;
+    }
+    
+
     return 0;
 }
