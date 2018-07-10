@@ -12,6 +12,7 @@ int main(){
     cout<<"这里是小林的NOIP学习仓库"<<endl;
     cout<<"学习中编写的各种代码和资料都存放在这里"<<endl;
     cout<<"虽然还是个蒟蒻，但在努力前进~"<<endl;
+    return 0;
 }
 ```
 
