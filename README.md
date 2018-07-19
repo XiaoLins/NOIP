@@ -35,6 +35,8 @@ int main(){
 
 QQ: 279125717
 
+Coding: https://coding.net/u/Xiao_Lins
+
 Email: root@earthsky.cn or leon_she@outlook.com
 
 Website: [SkyPixel - 地球天空](http://www.earthsky.cn) 
