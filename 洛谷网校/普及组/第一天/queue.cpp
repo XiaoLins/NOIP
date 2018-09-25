@@ -32,7 +32,7 @@ struct queue{
         if (l<r){
             return r-l;
         } else{
-            return l-r+1;
+            return l-r+1;   
         }
     }
     bool empty(){

@@ -1,96 +1,110 @@
-//luogu.org 1217 [USACO1.5]回文质数 Prime Palindromes
+//luogu 1217 [USACO1.5]回文质数 Prime Palindromes
 
 #include <cstdio>
 #include <iostream>
+#include <algorithm>
 #include <cmath>
 #include <vector>
 
 using namespace std;
+int a,b;
+vector<int> nums;
 
-long a,b;
-long primeList[10000];
-bool prime = true;
-long hui[100000];
-long cnt = 0,pCnt = 1;
-
-int main() {
-    freopen("1217.in","r",stdin);
-    freopen("1217.out","w",stdout);
-    cin>>a>>b;
-    for (int i = 5; i <= 9; i++){
-        hui[cnt] = i;
-        cnt++;
-    }
-    hui[cnt] = 11;
-    cnt++;
-    for (int i = 1; i <= 9; i += 2){
-        for (int j = 0; j <= 9; j++){
-            hui[cnt]=100*i+10*j+i;
-            cnt++;
-        }
-    }
-    for (int i = 1; i <= 9; i += 2){
-        for (int j = 0; j <= 9; j++){
-            for (int k = 0; k <= 9; k++){
-                hui[cnt]=10000*i+1000*j+100*k+10*j+i;
-                cnt++;
+bool isPrime(int num){
+    if(num <= 1){
+        return false;
+    } else if (num == 2){
+        return true;
+    } else{
+        for (int i = 3; i <= sqrt(num); i+=2){
+            if(num % i == 0){
+                return false;
             }
         }
     }
-    for (int i = 1; i <= 9; i += 2){
-        for (int j = 0; j <= 9; j++){
-            for (int k = 0; k <= 9; k++){
-                for (int x = 0; x <= 9; x++){
-                    hui[cnt]=1000000*i+100000*j+10000*k+1000*x+100*k+10*j+i;
-                    cnt++;
+    return true;
+}
+
+int main(){
+    cin >> a >>b;
+    //长度为1
+    nums.push_back(5);
+    nums.push_back(7);
+    //长度为2
+    if (b >= 10){
+        for (int i = 1; i <= 9; i+=2){
+            nums.push_back(11*i);
+        }
+    }
+    //长度为3
+    if (b >= 100){
+        for (int d1 = 1; d1 <= 9; d1 += 2){
+            for (int d2 = 0; d2 <= 9; d2++){
+                nums.push_back(100*d1+10*d2+d1);
+            }
+        }
+    }
+    //长度为4
+    if (b >= 1000){
+        for (int d1 = 1; d1 <= 9; d1+=2){
+            for (int d2 = 0; d2 <= 9; d2++){
+                nums.push_back(1001*d1+11*d2);
+            }
+        }
+    }
+    //长度为5
+    if (b >= 10000){
+        for (int d1 = 1; d1 <= 9; d1 += 2){
+            for (int d2 = 0; d2 <= 9; d2++){
+                for (int d3 = 0 ; d3 <= 9; d3++){
+                    nums.push_back(10000*d1+1000*d2+100*d3+10*d2+d1);
                 }
             }
         }
     }
-	bool num [b+5]; 
-	for(int i=2; i<=b; i++)
-	{
-		num[i] = true;
-	}
-	for(int i=2; i<=sqrt(b); i++)
-	{
-		if(num[i])
-			for(int j=2; j<=b/i; j++)
-				num[i*j] = false;
-	}
-    primeList[0] = 2;
-	for(int i=3; i<=b; i++)
-	{
-		if(num[i]){
-            primeList[pCnt] = i;
-            pCnt++;
+    //长度为6
+    if (b >= 100000){
+        for (int d1 = 1; d1 <= 9; d1+=2){
+            for (int d2 = 0; d2 <= 9; d2++){
+                for (int d3 = 0; d3 <= 9; d3++){
+                    nums.push_back(100001*d1+10010*d2+1100*d3);
+                }
+            }
         }
-	}
-    for (int i = 0; i < pCnt; i++){
-        cout << primeList[pCnt] <<", "<<endl;
     }
-    for (int i = 0; i < cnt; i++){
-        int temp = hui[i];
-        if (temp < a){
+    //长度为7
+    if (b >= 1000000){
+        for (int d1 = 1; d1 <= 9; d1 += 2){
+            for (int d2 = 0; d2 <= 9; d2++){
+                for (int d3 = 0 ; d3 <= 9; d3++){
+                    for (int d4 = 0; d4 <= 9; d4++){
+                        nums.push_back(1000000*d1+100000*d2+10000*d3+1000*d4+100*d3+10*d2+d1);
+                    }
+                }
+            }
+        }
+    }
+    //长度为8
+    if (b >= 10000000){
+        for (int d1 = 1; d1 <= 9; d1+=2){
+            for (int d2 = 0; d2 <= 9; d2++){
+                for (int d3 = 0; d3 <= 9; d3++){
+                    for (int d4 = 0; d4 <= 9; d4++){
+                        nums.push_back(10000001*d1+1000010*d2+100100*d3+11000*d4);
+                    }
+                }
+            }
+        }
+    }
+    for (int i = 0; i < nums.size(); i++){
+        if (nums[i] < a){
             continue;
-        } else if (temp > b){
-            //cout<<temp;
+        } else if (nums[i] > b){
             break;
         }
-        for (int j = 0; j < pCnt; j++){
-            if (temp == primeList[j]){
-                break;
-            }
-            if (temp % primeList[j] == 0){
-                prime = false;
-                break;
-            }
+        if (isPrime(nums[i])){
+            cout<<nums[i]<<endl;
         }
-        if (prime){
-            //printf("%d\n",temp);
-        }
-        prime = true;
     }
-    
     return 0;
 }
