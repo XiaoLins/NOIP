@@ -1,51 +1,59 @@
-//luogu.org 1576 最小花费
+//luogu 1576
+//Dijkstra + Priority_Queue
+
 #include <cstdio>
 #include <iostream>
+#include <queue>
+#include <vector>
 #include <algorithm>
+#include <cstring>
 
 using namespace std;
 
-int m,n,w[100005],c[100005][3],dis[2005],pre[2005],a,b;
-double res = 100;
+struct edge{
+    int to;
+    double d;
+};
+
+const int MAX_N = 2005, MAX_M = 100005, INF = 0x3f3f3f3f;
+typedef pair<double,int> pii;//距离放前面 
+priority_queue<pii, vector<pii>, greater<pii> > q;
+vector<edge> G[MAX_M];
+double dist[MAX_N];
+int in1,in2,in3,s,t,n,m;
+
+void add_edge(int from, int to, double d){
+    edge x;
+    x.to = to;
+    x.d = 1.0-(d/100.0);
+    G[from].push_back(x);
+    x.to = from;
+    G[to].push_back(x);
+}
 
 int main(){
     cin>>n>>m;
-
-    for (int i = 1; i <= n; i++){
-        dis[i] = 0x7fffffff/3;
-        c[i][1] = 0x7fffffff/3;
-        c[i][2] = 0x7fffffff/3;
-    }
     for (int i = 1; i <= m; i++){
-        cin>> c[i][1] >> c[i][2] >> w[i];
+        cin>>in1>>in2>>in3;
+        add_edge(in1,in2,in3);
     }
-    cin>>a>>b;
-    dis[a] = 0;
-    pre[a] = -1;
-    cout<<1<<endl;
-    for (int i = 1; i <= n-1; i++){
-        for (int j = 1; j <= m; j++){
-            if (dis[c[j][1]]+w[j] < dis[c[j][2]]){
-                dis[c[j][2]] = dis[c[j][1]]+w[j];
-                pre[c[j][2]] = c[j][1];
-            }
-            if (dis[c[j][2]]+w[j] < dis[c[j][1]]){
-                dis[c[j][1]] = dis[c[j][2]]+w[j];
-                pre[c[j][1]] = c[j][2];
-            }
-        }
+    for (int i = 1; i <= n; i++){
+        dist[i] = INF;
     }
-    int i = pre[b];
-    int bian;
-    while (pre[i] != -1){
-        for (int j = 1; j <= m; j++){
-            if ((c[j][1] == i && c[j][2] == pre[i]) || (c[j][2] == i && c[j][1] == pre[i])){
-                bian = j;
-                break;
+    cin>>s>>t;
+    dist[s] = 1.0; q.push(make_pair(1.0,s));
+    while(!q.empty()){
+        pii y = q.top(); q.pop();
+        double dw = y.first; int p = y.second;
+        //if (dw != dist[p]) continue;
+        for (int i = 0; i < G[p].size(); i++){
+            edge e = G[p][i];
+            if (dist[e.to] > dist[p]/e.d ){
+                dist[e.to] = dist[p]/e.d;
+                q.push(make_pair(dist[e.to],e.to));
             }
         }
-        res /= (1 - (w[bian] / 100));
     }
-    printf("%.8lf",res);
+    printf("%.8f",dist[t]*100);
     return 0;
 }
