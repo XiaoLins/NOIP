@@ -1,3 +1,4 @@
+
 #include <cstdio>
 #include <iostream>
 #include <algorithm>
@@ -31,22 +32,22 @@ void dfs(int now, int fath){ // f表示当前节点，fath表示它的父亲节�
 }
 
 int lca(int x, int y){
-    if (depth[x] < depth[y]){
+    if (depth[x] < depth[y]){ //用数学语言来说就是：不妨设x的深度 >= y的深度
         swap(x,y);
     }
     while (depth[x] > depth[y]){
-        x = fa[lg[depth[x]-depth[y]]-1]
+        x = fa[x][lg[depth[x]-depth[y]]-1]; //先跳到同一深度
     }
-    if (x == y){
+    if (x == y){ //如果x是y的祖先，那他们的LCA肯定就是x了
         return x;
     }
-    for (int k = lg[depth[x]]-1; k >= 0; k--){
-        if (fa[x][k] != fa[y][k]){
+    for (int k = lg[depth[x]]-1; k >= 0; k--){ //不断向上跳（lg就是之前说的常数优化）
+        if (fa[x][k] != fa[y][k]){ //因为我们要跳到它们LCA的下面一层，所以它们肯定不相等，如果不相等就跳过去。
             x = fa[x][k];
             y = fa[y][k];
         }
     }
-    return fa[x][0];
+    return fa[x][0];//返回父节点
 }
 
 int main(){
@@ -57,8 +58,8 @@ int main(){
     }
     dfs(s,0);
 
-    for (int i = 1; i <= n; i++){
-        lg[i] = lg[i-1] + (1<<lg[i-1] == i);
+    for (int i = 1; i <= n; i++){ //预先算出log_2(i)+1的值，用的时候直接调用就可以了
+        lg[i] = lg[i-1] + (1<<lg[i-1] == i); 
     }
     for (int i = 1; i <= m; i++){
         int x,y; scanf("%d%d",&x,&y);
